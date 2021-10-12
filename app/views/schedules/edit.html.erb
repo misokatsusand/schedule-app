@@ -1,0 +1,33 @@
+<h1>スケジュール編集</h1>
+<%= render "shared/error",obj: @skd %>
+
+<%= form_for @skd do |s| %>
+<table>
+  <tr>
+    <th><%= s.label :title,"タイトル" %></th>
+    <td><%= s.text_field :title %></td>
+  </tr>
+  <tr>
+    <th><%= s.label :start,"開始日" %></th>
+    <td><%= s.date_field(:start,min:Date.today) %></td>
+  </tr>
+  <tr>
+    <th><%= s.label :end,"終了日" %></th>
+    <td><%= s.date_field(:end,min:Date.today) %></td>
+  </tr>
+  <tr>
+    <th><%= s.label :allday,"終日" %></th>
+    <td><%= s.check_box :allday %></td>
+  </tr>
+  <tr>
+    <th><%= s.label :memo,"メモ" %></th>
+    <td><%= s.text_field :memo %></td>
+  </tr>
+</table>
+
+<ul>
+  <li><%= s.submit "スケジュールの編集を完了する"%></li>
+  <li><%= link_to "スケジュール一覧に戻る", :schedules %></li>
+</ul>
+
+<% end %>
