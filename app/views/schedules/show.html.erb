@@ -1,0 +1,35 @@
+<h1>スケジュール一覧</h1>
+<table>
+  <tr>
+    <th>タイトル</th>
+    <td><%= @skd.title %></td>
+  </tr>
+
+  <tr>
+    <th>開始日</th>
+    <td><%= @skd.start.to_s(:date_jp) %></td>
+  </tr>
+  <tr>
+    <th>投稿日時</th>
+    <td><%= @skd.created_at.to_s(:datetime_jp) %></td>
+  </tr>
+
+  <tr>
+    <th>終日</th>
+    <td>
+      <% if @skd.allday == 1 %>
+        <span>○</span>
+      <% end %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>スケジュールメモ</th>
+    <td><%= @skd.memo %></td>
+  </tr>
+</table>
+<ul>
+  <li><%= link_to "スケジュール一覧に戻る", :schedules %></li>
+  <li><%= link_to "スケジュールを編集する", [:edit, @skd] %></li>
+  <li><%= link_to "スケジュールを削除する", @skd, method: :delete, data: { confirm: "削除しますか？" } %></li>
+</ul>

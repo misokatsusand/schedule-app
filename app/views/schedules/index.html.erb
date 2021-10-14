@@ -1,0 +1,39 @@
+<h1>スケジュール一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>スケジュール更新日時</th>
+      <th>確認</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @skds.each do |skd| %>
+      <tr>
+        <td><%= skd.id %></td>
+        <td><%= skd.title %></td>
+        <td><%= skd.start.to_s(:date_jp) %></td>
+        <td><%= skd.end.to_s(:date_jp) %></td>
+        <td class="allday">
+          <% if skd.allday == 1 %>
+            <span>○</span>
+          <% end %>
+        </td>
+        <td><%= skd.updated_at.to_s(:datetime_jp) %></td>
+        <td><%= link_to "確認" , skd %></td>
+        <td><%= link_to "編集" , [:edit, skd] %></td>
+        <td><%= link_to "削除" , skd, method: :delete, data:{confirm:"スケジュール削除しますか？"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<ul>
+  <li><%= link_to "スケジュールを新規登録する", :new_schedule %></li>
+</ul>
